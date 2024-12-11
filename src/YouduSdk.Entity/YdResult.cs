@@ -2,7 +2,7 @@
 using YouduSdk.Entity.Enum;
 
 namespace YouduSdk.Entity;
-public class YdResult
+public class YdResultBase
 {
     /// <summary>
     /// 返回代码
@@ -14,6 +14,9 @@ public class YdResult
     /// </summary>
     [JsonPropertyName("errmsg")]
     public required string Message { get; set; }
+}
+public class YdResult : YdResultBase
+{
     /// <summary>
     /// 加密返回体
     /// </summary>

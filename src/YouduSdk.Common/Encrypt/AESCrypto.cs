@@ -6,13 +6,11 @@ using YouduSdk.Common.Exceptions;
 namespace YouduSdk.Common.Encrypt;
 public class AESCrypto
 {
-
-
-    public static byte[] AESDecrypt(string input, string encodingAESKey, string appId)
+    public static byte[] AESDecrypt(string input,ApiOptions options)
     {
         try
         {
-            var Key = Convert.FromBase64String(encodingAESKey);
+            var Key = Convert.FromBase64String(options.EncodingaesKey);
             var Iv = new byte[16];
             Array.Copy(Key, Iv, 16);
             var btmpMsg = AESDecrypt(input, Iv, Key);
@@ -25,9 +23,9 @@ public class AESCrypto
             Array.Copy(btmpMsg, 20, bMsg, 0, len);
             Array.Copy(btmpMsg, 20 + len, bAppId, 0, btmpMsg.Length - 20 - len);
             var decryptAppId = Encoding.UTF8.GetString(bAppId);
-            if (!decryptAppId.Equals(appId))
+            if (!decryptAppId.Equals(options.AppId))
             {
-                throw new AESCryptoException("appId not match", null);
+                throw new AESCryptoException("appId not match", new ArgumentException("appId not match"));
             }
             return bMsg;
         }
@@ -36,17 +34,16 @@ public class AESCrypto
             throw new AESCryptoException(e.Message, e);
         }
     }
-
-    public static string AESEncrypt(byte[] input, string encodingAESKey, string appId)
+    public static string AESEncrypt(byte[] input, ApiOptions options)
     {
-        try
+                try
         {
-            var Key = Convert.FromBase64String(encodingAESKey);
+            var Key = Convert.FromBase64String(options.EncodingaesKey);
             var Iv = new byte[16];
             Array.Copy(Key, Iv, 16);
             var Randcode = CreateRandCode(16);
             var bRand = Encoding.UTF8.GetBytes(Randcode);
-            var bAppId = Encoding.UTF8.GetBytes(appId);
+            var bAppId = Encoding.UTF8.GetBytes(options.AppId);
             var bMsgLen = BitConverter.GetBytes(HostToNetworkOrder(input.Length));
             var bMsg = new byte[bRand.Length + bMsgLen.Length + bAppId.Length + input.Length];
 
@@ -57,13 +54,11 @@ public class AESCrypto
 
             return AESEncrypt(bMsg, Iv, Key);
         }
-        catch (System.Exception e)
+        catch (Exception e)
         {
             throw new AESCryptoException(e.Message, e);
         }
     }
-
-
     public static byte[] ToBytes(string input)
     {
         return Encoding.UTF8.GetBytes(input);
@@ -113,7 +108,7 @@ public class AESCrypto
         aes.Key = Key;
         aes.IV = Iv;
         var encrypt = aes.CreateEncryptor(aes.Key, aes.IV);
-        byte[] xBuff = null;
+        byte[]? xBuff = null;
 
         var msg = new byte[Input.Length + 32 - Input.Length % 32];
         Array.Copy(Input, msg, Input.Length);
@@ -167,7 +162,7 @@ public class AESCrypto
         aes.Key = Key;
         aes.IV = Iv;
         var decrypt = aes.CreateDecryptor(aes.Key, aes.IV);
-        byte[] xBuff = null;
+        byte[]? xBuff = null;
         using (var ms = new MemoryStream())
         {
             using (var cs = new CryptoStream(ms, decrypt, CryptoStreamMode.Write))

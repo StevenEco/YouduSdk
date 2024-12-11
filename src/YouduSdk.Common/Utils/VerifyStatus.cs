@@ -15,7 +15,7 @@ public class VerifyStatus
 
     public  static void CheckApiStatus(YdResult result)
     {
-        if((StatusCode)result.StatusCode!= StatusCode.STATUSCODE_OK)
+        if(result.StatusCode!= StatusCode.STATUSCODE_OK)
         {
             throw new ArgumentException("invalid errcode or errmsg"); ;
         }

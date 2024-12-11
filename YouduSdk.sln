@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YouduSdk.Common", "src\Youd
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSdk", "test\TestSdk\TestSdk.csproj", "{70627E4B-D959-4BF0-A6CD-137A6826392E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YouduSdk.Extension", "src\YouduSdk.Extension\YouduSdk.Extension.csproj", "{828D6C51-AC3D-4BFD-8BF1-5D7C4075C44C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{70627E4B-D959-4BF0-A6CD-137A6826392E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70627E4B-D959-4BF0-A6CD-137A6826392E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70627E4B-D959-4BF0-A6CD-137A6826392E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{828D6C51-AC3D-4BFD-8BF1-5D7C4075C44C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{828D6C51-AC3D-4BFD-8BF1-5D7C4075C44C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{828D6C51-AC3D-4BFD-8BF1-5D7C4075C44C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{828D6C51-AC3D-4BFD-8BF1-5D7C4075C44C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
