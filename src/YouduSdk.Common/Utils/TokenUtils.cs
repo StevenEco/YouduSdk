@@ -5,7 +5,6 @@ using YouduSdk.Common.Exceptions;
 using YouduSdk.Common.Encrypt;
 using YouduSdk.Entity;
 using YouduSdk.Entity.Entities;
-using System.Data;
 
 namespace YouduSdk.Common.Utils;
 public class TokenUtils
